@@ -18,15 +18,26 @@ export default class MeteorScreen extends Component {
     constructor(props) {
         super(props);
         this.state = {
-          
+            meteors: {},
         };
     }
 
     componentDidMount() {
-       
+        this.getMeteors()
     }
 
-    
+    getMeteors = () => {
+        axios
+            .get("https://api.nasa.gov/neo/rest/v1/feed?api_key=nAkq24DJ2dHxzqXyzfdreTvczCVOnwJuFLFq4bDZ")
+            .then(response => {
+                this.setState({ meteors: response.data.near_earth_objects })
+            })
+            .catch(error => {
+                Alert.alert(error.message)
+            })
+    }
+
+   
 
     render() {
         if (Object.keys(this.state.meteors).length === 0) {
@@ -41,11 +52,11 @@ export default class MeteorScreen extends Component {
                 </View>
             )
         } else {
+            
             return (
                 <View style={styles.container}>
                     <SafeAreaView style={styles.droidSafeArea} />
-                Tela de Meteoros!
-                   
+                  <Text> Tela de Meteoros! </Text>
                 </View >
             );
         }
