@@ -13,7 +13,7 @@ import {
 import MapView, { Marker } from 'react-native-maps';
 import axios from "axios";
 
-export default class IssLocationScreen extends Component {
+export default class Astheroids extends Component {
     constructor(props) {
         super(props);
         this.state = {
